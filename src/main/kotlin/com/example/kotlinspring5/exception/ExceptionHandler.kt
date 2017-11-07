@@ -14,7 +14,7 @@ class ExceptionHandler {
         return try {
             next.handle(request)
         } catch (ex: Exception) {
-            log.error("An error occured", ex)
+            log.warn("An exception was caught", ex)
             when (ex) {
                 is NotFoundException -> ServerResponse.notFound().build()
                 else -> ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
