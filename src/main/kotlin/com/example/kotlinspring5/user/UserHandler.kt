@@ -17,7 +17,7 @@ class UserHandler {
             ServerResponse.ok().body(users.toFlux(), User::class.java)
 
     fun getUser(username: String): Mono<ServerResponse> {
-        val foundUsername = users.find { it.name == username } ?: throw NotFoundException("Could not find user: $username")
+        val foundUsername = users.find { it.name == username } ?: throw NotFoundException(reason = "Could not find user: $username")
 
         return ServerResponse.ok().body(foundUsername.toMono(), User::class.java)
     }

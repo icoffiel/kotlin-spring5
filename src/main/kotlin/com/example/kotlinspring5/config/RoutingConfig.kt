@@ -1,6 +1,5 @@
 package com.example.kotlinspring5.config
 
-import com.example.kotlinspring5.exception.ExceptionHandler
 import com.example.kotlinspring5.user.UserHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -9,7 +8,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.router
 
 @Configuration
-class RoutingConfig(val exceptionHandler: ExceptionHandler) {
+class RoutingConfig {
 
     private val usernamePathVariable = "username"
 
@@ -24,7 +23,5 @@ class RoutingConfig(val exceptionHandler: ExceptionHandler) {
                 userHandler.getUser(username)
             }
         }
-    }.filter { request, next ->
-        exceptionHandler.handleExceptions(next, request)
     }
 }
